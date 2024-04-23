@@ -7,15 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(models.Auth, {
         foreignKey: "userId",
       });
-
-      User.hasMany(models.Library, {
-        foreignKey: "userId",
-      });
-
-      User.belongsTo(models.Library, {
-        foreignKey: "libraryId",
-        allowNull: false,
-      });
     }
   }
 

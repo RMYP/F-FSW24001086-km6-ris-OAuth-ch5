@@ -5,7 +5,7 @@ const flash = require("connect-flash");
 const session = require("express-session");
 const apiErr = require("../controllers/errorController")
 
-const router = require("../router/index")
+const router = require("../routes/index")
 
 const app = express()
 
@@ -28,3 +28,5 @@ app.use(router)
 
 app.use(apiErr.onError);
 app.use(apiErr.onLost);
+
+module.exports = app

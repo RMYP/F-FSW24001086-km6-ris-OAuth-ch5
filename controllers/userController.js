@@ -2,18 +2,19 @@ const {User, Auth} = require("../models")
 const ApiError = require("../utils/apiError")
 const {Op} = require("sequelize")
 const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt");
 
 const login = async (req, res, next) => {
     try {
         const {email, password} = req.body
         const userData = Auth.findOne({
             where: {
-                [Op.eq] : email
+               email
             },
             include: ["User"]
         });
         if(!userData) return next("Email not register", 404)
-        if(user && bcrypt.compareSync(password, user.password)){
+        if(userData && bcrypt.compareSync(password, userData.password)){
             const token = jwt.sign(
                 {
                     id: userData.userId,
@@ -37,6 +38,8 @@ const login = async (req, res, next) => {
         }
         next(new ApiError("Wrong Password", 400))
     } catch (error) {
-        next(new ApiError(error.messagem, 500))
+        next(new ApiError(error.message, 500))
     }
 }
+
+module.exports = {login}
