@@ -98,4 +98,18 @@ const deleteCar = async (req, res, next) => {
     }
 }
 
-module.exports = {getAllCar, createCar, updateCar, deleteCar}
+
+const getCarById = async (req, res, next) => {
+    try {
+        const {id} = req.params
+        const checkCar = await car.findByPk(id)
+        if(!checkCar) return next(new ApiError(`Cant find cars with id: ${id} `))
+        res.status(201).json({
+            status: "Success",
+            checkCar
+        })
+    } catch (error) {
+        next(new ApiError(error.message, 500))
+    }
+}
+module.exports = {getAllCar, createCar, updateCar, deleteCar, getCarById}

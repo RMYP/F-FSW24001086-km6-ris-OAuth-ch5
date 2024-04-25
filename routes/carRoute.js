@@ -1,10 +1,12 @@
 const router = require("express").Router()
 const upload = require("../middlewares/uploader")
 const Car = require("../controllers/carController")
+const Authenticate = require("../middlewares/authenticate");
 
-router.post("/",upload.array("images"), Car.createCar)
 router.get("/", Car.getAllCar)
-router.delete("/:id", Car.deleteCar)
-router.patch("/:id", upload.array("images"), Car.updateCar)
+router.get("/:id", Car.getCarById)
+router.delete("/:id",Authenticate, Car.deleteCar)
+router.post("/",Authenticate,upload.array("images"), Car.createCar)
+router.patch("/:id", Authenticate, upload.array("images"), Car.updateCar)
 
 module.exports = router
