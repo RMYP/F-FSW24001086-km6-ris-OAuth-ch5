@@ -16,11 +16,27 @@ const carsInputSchema = joi.object({
     transmission: joi.string().default("Automatic").required(), 
     year: joi.number().required(), 
     typeCars: joi.string().required(), 
-    description: joi.string().default("Guest"),
+    description: joi.string(),
     updatedAt: new Date(),
     createdAt: new Date()
 })
 
-const validateRegisterInput = validator(carsInputSchema)
+const carUpdateSchema = joi.object({
+    plate: joi.string(), 
+    manufacture: joi.string(), 
+    model: joi.string(), 
+    rentPerDay: joi.number(), 
+    carSize: joi.string(), 
+    capacity: joi.number(), 
+    availableAt: joi.date(), 
+    transmission: joi.string(), 
+    year: joi.number(), 
+    typeCars: joi.string(), 
+    description: joi.string(),
+    updatedAt: new Date()
+})
 
-module.exports = {validateRegisterInput}
+const validateCreateInput = validator(carsInputSchema)
+const validateUpdateInput = validator(carUpdateSchema)
+
+module.exports = {validateCreateInput, validateUpdateInput}
