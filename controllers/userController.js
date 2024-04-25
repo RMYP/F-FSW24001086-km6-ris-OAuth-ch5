@@ -31,7 +31,7 @@ const login = async (req, res, next) => {
                 //     expiresIn: process.env.JWT_EXPIRED
                 // }
             )
-
+            console.log("Login")
             res.status(200).json({
                 status: "Success",
                 message: "Success Login",
@@ -59,6 +59,10 @@ const register = async (req, res, next) => {
         const saltRounds = 10;
         const hashedPassword = bcrypt.hashSync(value.password, saltRounds);
         
+        if(value.role == "Admin"){
+            if(req.user.role !== "SuperAdmin") return next(new ApiError("Forbidden, you must have Super Admin role to make Admin account", 403))
+        }
+
         createNewUser = await User.create({
             name: value.name,
             address: value.address,
@@ -86,4 +90,4 @@ const register = async (req, res, next) => {
     }
 }
 
-module.exports = {login,register}
+module.exports = {login, register}
