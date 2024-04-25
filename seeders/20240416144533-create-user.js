@@ -32,7 +32,7 @@ module.exports = {
         address: "789 Pine Boulevard",
         phone: "5556667777",
         profileImage: "http://example.com/profile_images/michael_johnson.jpg",
-        role: "Admin",
+        role: "SuperAdmin",
         libraryId: 1,
         createdAt: "2023-06-30T09:35:00Z",
         updatedAt: "2023-06-30T09:35:00Z",

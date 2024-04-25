@@ -9,6 +9,7 @@ const registerInputSchema = joi.object({
     name: joi.string().required(), 
     email: joi.string().required(), 
     password: joi.string().min(8).required(), 
+    confirmPassword: joi.any().valid(joi.ref('password')).required(),
     city: joi.string().required(), 
     address: joi.string().required(), 
     phone: joi.string().required(), 

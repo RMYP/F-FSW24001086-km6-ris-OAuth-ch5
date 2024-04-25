@@ -14,7 +14,7 @@ const login = async (req, res, next) => {
             },
             include: ["User"]
         });
-        if(!userData) return next("Email not register", 404)
+        if(!userData) return next(new ApiError("Email not register", 404))
 
         if(userData && bcrypt.compareSync(password, userData.password)){
             const token = jwt.sign(
@@ -38,7 +38,7 @@ const login = async (req, res, next) => {
                 data: token
             })
         }
-        next(new ApiError("Wrong Password", 400))
+        next(new ApiError("Wrong Password", 401))
     } catch (error) {
         next(new ApiError(error.message, 500))
     }
