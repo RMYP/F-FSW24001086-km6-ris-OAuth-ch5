@@ -28,10 +28,13 @@ const uploadImagekit = async (files) =>{
 const getAllCar = async (req, res, next) => {
     try {
         const carData = await car.findAll()
-        res.status(200).json({
-            status: "Success",
-            carData
-        })
+        if(carData){
+            res.status(200).json({
+                status: "Success",
+                carData
+            })
+        }
+        return next(new ApiError("Not Found", 404))
     } catch (error) {
         next(new ApiError(error.message, 500))
     }
@@ -44,7 +47,7 @@ const createCar = async (req, res, next) => {
         const files = req.files
         console.log(files)
         
-        await uploadImagekit(req.files).then((imageLink) => {value.image = imageLink}) 
+        if(files.length > 0) await uploadImagekit(req.files).then((imageLink) => {value.image = imageLink}) 
         console.log(value)
         const NewCar = await car.create(value)
 
@@ -68,8 +71,8 @@ const updateCar = async (req, res, next) => {
         
         const {error, value} = validator.validateUpdateInput(req.body)
         if(error) return next(new ApiError(error, 400))
+        if(req.user.role !== "Admin" || req.user.role !== "SuperAdmin") return next(new ApiError("You are not authorized. Required role Admin or Super Admin", 403))
         if(files.length > 0) await uploadImagekit(req.files).then((imageLink) => {value.image = imageLink})
-        console.log(value.image)
         const updateCar = await checkCar.update(value)
 
         res.status(201).json({
@@ -87,7 +90,8 @@ const deleteCar = async (req, res, next) => {
         const {id} = req.params
         const checkCar = await car.findByPk(id)
         if(!checkCar) return next(new apiError(`Cant find cars with id: ${id}`, 404))
-        console.log(checkCar)
+        if(req.user.role !== "Admin" || req.user.role !== "SuperAdmin") return next(new ApiError("You are not authorized. Required role Admin or Super Admin", 403))
+
         await checkCar.destroy()
         res.status(200).json({
             status: "success",
@@ -106,7 +110,7 @@ const getCarById = async (req, res, next) => {
         if(!checkCar) return next(new ApiError(`Cant find cars with id: ${id} `))
         res.status(201).json({
             status: "Success",
-            checkCar
+            car: checkCar
         })
     } catch (error) {
         next(new ApiError(error.message, 500))

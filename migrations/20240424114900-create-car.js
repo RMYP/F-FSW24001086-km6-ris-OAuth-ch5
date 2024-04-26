@@ -26,7 +26,8 @@ module.exports = {
       },
       image: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull:true,
+        defaultValue: "http://via.placeholder.com/600x400"
       },
       rentPerDay: {
         type: Sequelize.INTEGER,

@@ -305,14 +305,14 @@
     },
     "/car/{id}": {
       "get": {
-        "tags": ["Books"],
+        "tags": ["Car"],
         "security": [
           {
             "bearerToken": []
           }
         ],
-        "summary": "Get book by id",
-        "description": "Use this API to GET book data by id ",
+        "summary": "Get car by id",
+        "description": "Use this API to GET car data by id ",
         "parameters": [
           {
             "name": "id",
@@ -322,12 +322,12 @@
               "type": "integer",
               "example": 2
             },
-            "description": "Book ID"
+            "description": "Car ID"
           }
         ],
         "responses": {
           "201": {
-            "description": "Success getting book data",
+            "description": "Success getting car data",
             "content": {
               "application/json": {
                 "schema": {
@@ -337,30 +337,28 @@
                       "type": "string",
                       "example": "Success"
                     },
-                  "books": {
+                    
+                    "Car": {
+                      "type": "object",
+                      "example": {
                           "id": 2,
-                          "title": "To Kill a Mockingbird",
-                          "genre": "Fiction",
-                          "author": "Harper Lee",
-                          "language": "English",
-                          "publicationYear": 1960,
-                          "publisher": "J. B. Lippincott & Co.",
-                          "imageCover": "http://via.placeholder.com/600x400",
-                          "numOfBooks": 8,
-                          "numBorrowed": 1,
-                          "rackId": 2,
-                          "createdAt": "2023-06-29T07:30:00.000Z",
-                          "updatedAt": "2023-06-29T07:30:00.000Z",
-                          "Rack": {
-                              "id": 2,
-                              "rackNumber": 2,
-                              "floorNumber": 1,
-                              "libraryId": 2,
-                              "createdAt": "2023-06-03T09:00:00.000Z",
-                              "updatedAt": "2023-06-03T09:00:00.000Z"
-                          }
+                          "plate": "WXB-3984",
+                          "manufacture": "BMW",
+                          "model": "X5",
+                          "image": "car01.min.jpg",
+                          "rentPerDay": 800000,
+                          "carSize": "small",
+                          "capacity": 2,
+                          "description": null,
+                          "availableAt": "2022-03-23T15:49:05.563Z",
+                          "transmission": "Automatic",
+                          "year": 2019,
+                          "typeCars": "Convertible",
+                          "createdAt": "2024-04-24T11:51:20.230Z",
+                          "updatedAt": "2024-04-24T11:51:20.230Z"
+                        }
+                      }
                     }
-                  }
                 }
               }
             }
@@ -386,7 +384,7 @@
             }
           },
           "404": {
-            "description": "Cant find book with requested id" ,
+            "description": "Cant find car with requested id" ,
             "content": {
               "application/json": {
                 "schema": {
@@ -394,14 +392,14 @@
                   "properties": {
                     "status": {
                       "type": "string",
-                      "example": "Error"
+                      "example": "Failed"
                     },
                     "data": {
                       "type": "object",
                       "properties": {
                         "message": {
                           "type": "string",
-                          "example": "Book not found"
+                          "example": "Cant find cars with id: 2"
                         }
                       }
                     }
@@ -412,15 +410,15 @@
           }
         }
       },
-      "put": {
-        "tags": ["Books"],
+      "patch": {
+        "tags": ["Car"],
         "security": [
           {
             "bearerToken": []
           }
         ],
-        "summary": "Edit book data",
-        "description": "Use this API to edit or update books data ",
+        "summary": "Edit car data",
+        "description": "Use this API to edit or update car data, *There is an error when update data using swagger, but if using Postman it work* ",
         "parameters": [
           {
             "name": "id",
@@ -428,25 +426,25 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "example": 3
+              "example": 2
             },
-            "description": "User ID"
+            "description": "Car ID"
           }
         ],
         "requestBody": {
-          "description": "Request body",
+          "description": "Request body, Noted: *There is an error when update data using swagger, but if using Postman it work*",
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title": {
+                  "model": {
                     "type": "string",
-                    "example": "Servant of Evil"
+                    "example": "Panzerjager Ferdinand"
                   },
-                  "genre": {
+                  "manufacture": {
                     "type": "string",
-                    "example": "Fiction"
+                    "example": "porsche"
                   }
                 }
               }
@@ -455,7 +453,7 @@
         },
         "responses": {
           "201": {
-            "description": "Sukses mengedit data user berdasarkan id",
+            "description": "Success update car data",
             "content": {
               "application/json": {
                 "schema": {
@@ -468,27 +466,21 @@
                     "data": {
                       "type": "object",
                       "example": {
-                        "id": 3,
-                        "title": "Servant of Evil",
-                        "genre": "Fiction",
-                        "author": "George Orwell",
-                        "language": "English",
-                        "publicationYear": 1949,
-                        "publisher": "Secker & Warburg",
-                        "imageCover": "http://via.placeholder.com/600x400",
-                        "numOfBooks": 6,
-                        "numBorrowed": 0,
-                        "rackId": 3,
-                        "createdAt": "2023-06-30T10:45:00.000Z",
-                        "updatedAt": "2024-04-20T19:54:03.297Z",
-                        "Rack": {
-                          "id": 3,
-                          "rackNumber": 3,
-                          "floorNumber": 2,
-                          "libraryId": 3,
-                          "createdAt": "2023-06-04T09:00:00.000Z",
-                          "updatedAt": "2023-06-04T09:00:00.000Z"
-                        } 
+                        "id": 2,
+                        "plate": "OSL-4224",
+                        "manufacture": "Porche",
+                        "model": "Panzerjager Ferdinand",
+                        "image": "https://ik.imagekit.io/zcrvfsvrw/file_05ed0232-e466-4f4a-bf50-2da8f047aeb2_xSuISmNlP.jpg",
+                        "rentPerDay": 2000,
+                        "carSize": "large",
+                        "capacity": 6,
+                        "description": null,
+                        "availableAt": "2022-03-23T15:49:05.563Z",
+                        "transmission": "Automatic",
+                        "year": 1934,
+                        "typeCars": "Sedan",
+                        "createdAt": "2024-04-25T07:39:37.787Z",
+                        "updatedAt": "2024-04-26T00:06:49.723Z"
                       }
                     }
                   }
@@ -529,7 +521,7 @@
                     },
                       "message": {
                       "type": "string",
-                      "example": "You are not authorized. Required role Admin or Staff"
+                      "example": "You are not authorized. Required role Admin or Super Admin"
                     }
                   }
                 }
@@ -537,7 +529,7 @@
             }
           },
           "404": {
-            "description": "Cant find book with requested id",
+            "description": "Cant find Car with requested id",
             "content": {
               "application/json": {
                 "schema": {
@@ -549,7 +541,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "example": "Book not found"
+                      "example": "Car not found"
                     }
                   }
                 }
@@ -559,14 +551,14 @@
         }
       },
       "delete": {
-        "tags": ["Books"],
+        "tags": ["Car"],
         "security": [
           {
             "bearerToken": []
           }
         ],
-        "summary": "Delete book data",
-        "description": "Use this API to delete books ",
+        "summary": "Delete car data",
+        "description": "Use this API to delete car ",
         "parameters": [
           {
             "name": "id",
@@ -574,14 +566,14 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "example": 3
+              "example": 2
             },
-            "description": "User ID"
+            "description": "Car ID"
           }
         ],
         "responses": {
           "201": {
-            "description": "Success deleting book data",
+            "description": "Success deleting Car data",
             "content": {
               "application/json":{
                 "schema":{
@@ -593,7 +585,7 @@
                   },
                   "message":{
                     "type":"string",
-                    "example": "Book has been deleted"
+                    "example": "Car has been deleted"
                   }
                 }
               }
@@ -634,7 +626,7 @@
                     },
                       "message": {
                       "type": "string",
-                      "example": "You are not authorized. Required role Admin or Staff"
+                      "example": "You are not authorized. Required role Admin or Super Admin"
                     }
                   }
                 }
@@ -642,7 +634,7 @@
             }
           },
           "404": {
-            "description": "Cant find book with requested id",
+            "description": "Cant find Car with requested id",
             "content": {
               "application/json": {
                 "schema": {
@@ -654,7 +646,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "example": "Book not found"
+                      "example": "Car not found"
                     }
                   }
                 }
@@ -666,46 +658,18 @@
     }, 
     "/car/": {
       "get": {
-        "tags": ["Books"],
+        "tags": ["Car"],
         "security": [
           {
             "bearerToken": []
           }
         ],
-        "summary": "Return book data that has been filtered",
-        "description": "Use this API to do filtering",
-        "parameters": [
-          {
-            "name": "search",
-            "in": "path",
-            "schema": {
-              "type": "string",
-              "example": "search=The Great Gatsby"
-            },
-            "description": "Seach param"
-          },
-          {
-            "name": "genre",
-            "in": "path",
-            "schema": {
-              "type": "string",
-              "example": "genre=fiction"
-            },
-            "description": "shortby genre"
-          },
-          {
-            "name": "author",
-            "in": "path",
-            "schema": {
-              "type": "string",
-              "example": "author=scott    "
-            },
-            "description": "shortby author"
-          }
-        ],
+        "summary": "Get all car data",
+        "description": "Use this API to get all car data in database",
+
         "responses": {
           "201": {
-            "description": "Success to get book data based on filter param",
+            "description": "Success getting all car data",
             "content": {
               "application/json": {
                 "schema": {
@@ -719,47 +683,21 @@
                       "type": "object",
                       "example": {
                         "id": 1,
-                        "title": "The Great Gatsby",
-                        "genre": "Fiction",
-                        "author": "F. Scott Fitzgerald",
-                        "language": "English",
-                        "publicationYear": 1925,
-                        "publisher": "Scribner",
-                        "imageCover": "http://via.placeholder.com/600x400",
-                        "numOfBooks": 10,
-                        "numBorrowed": 2,
-                        "rackId": 1,
-                        "createdAt": "2023-06-28T09:25:00.000Z",
-                        "updatedAt": "2023-06-28T09:25:00.000Z"
+                        "plate": "DBH-3491",
+                        "manufacture": "Ford",
+                        "model": "F150",
+                        "image": "car01.min.jpg",
+                        "rentPerDay": 200000,
+                        "carSize": "small",
+                        "capacity": 2,
+                        "description": null,
+                        "availableAt": "2022-03-23T15:49:05.563Z",
+                        "transmission": "Automatic",
+                        "year": 2022,
+                        "typeCars": "Sedan",
+                        "createdAt": "2024-04-24T11:51:20.230Z",
+                        "updatedAt": "2024-04-24T11:51:20.230Z"
                       }
-                    },
-                    "data": {
-                      "type": "object",
-                      "example": {
-                        "TotalData": 1,
-                        "totalPages": 1,
-                        "limit": 1
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Invalid token",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "status": {
-                      "type": "string",
-                      "example": "Failed"
-                    },
-                  "message": {
-                          "type": "string",
-                          "example": "Token not found"
                     }
                   }
                 }
@@ -767,7 +705,7 @@
             }
           },
           "404": {
-            "description": "Cant find book with requested id",
+            "description": "Cant find any cars",
             "content": {
               "application/json": {
                 "schema": {
@@ -779,7 +717,7 @@
                     },
                   "message": {
                           "type": "string",
-                          "example": "Book not found"
+                          "example": "Not Found"
                     }
                   }
                 }
@@ -789,7 +727,7 @@
         }
       },
       "post": {
-        "tags": ["Books"],
+        "tags": ["Car"],
         "security": [
           {
             "bearerToken": []
@@ -804,41 +742,45 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "title": {
+                  "plate": {
                     "type": "string",
-                    "example": "arknight"
+                    "example": "TGR-151"
                   },
-                  "author": {
+                  "manufacture": {
                     "type": "string",
-                    "example": "jhon doe"
+                    "example": "Henschel"
                   },
-                  "publisher": {
-                    "type": "string",
-                    "example": "Yostar"
-                  },
-                  "publicationYear": {
+                  "rentPerDay": {
                     "type": "integer",
-                    "example": 2020
+                    "example": 200000
                   },
-                  "genre": {
+                  "carSize": {
+                    "type": "string",
+                    "example": "large"
+                  },
+                  "capacity": {
                     "type": "integer",
-                    "example": "action"
+                    "example": 5
                   },
-                  "numOfBooks": {
+                  "description": {
                     "type": "string",
-                    "example": "3"
+                    "example": "Kendaraan pak kumis kotak"
                   },
-                  "numBorrowed": {
+                  "availableAt": {
                     "type": "string",
-                    "example": "0"
+                    "example": "1944-03-23T15:49:05.563Z"
                   },
-                  "rackId": {
+                  "transmission": {
                     "type": "string",
-                    "example": "1"
+                    "example": "Manual"
                   },
-                  "language": {
+                  "year": {
+                    "type": "integer",
+                    "example": 1941
+                  },
+                  "typeCars": {
                     "type": "string",
-                    "example": "English"
+                    "example": "Sedan"
                   }
                 }
               }
@@ -860,19 +802,21 @@
                     "book": {
                       "type": "object",
                       "example": {
-                        "imageCover": "https://dailymockup.com/wp-content/uploads/edd/2019/04/free-book-cover-mockup-psd.jpg",
-                        "id": 11,
-                        "title": "arknight",
-                        "genre": "action",
-                        "author": "jhon doe",
-                        "language": "English",
-                        "publicationYear": 2020,
-                        "publisher": "Yostar",
-                        "numOfBooks": 3,
-                        "numBorrowed": 0,
-                        "rackId": 1,
-                        "updatedAt": "2024-04-20T18:33:03.010Z",
-                        "createdAt": "2024-04-20T18:33:03.010Z"
+                        "id": 1,
+                        "plate": "TGR-151",
+                        "manufacture": "Henschel",
+                        "model": "Tiger H1",
+                        "rentPerDay": 200000,
+                        "carSize": "large",
+                        "capacity": 5,
+                        "description": "Kendaraan pak kumis kotak",
+                        "availableAt": "1944-03-23T15:49:05.563Z",
+                        "transmission": "Manual",
+                        "year": 1941,
+                        "typeCars": "Sedan",
+                        "updatedAt": "2024-04-26T00:40:18.620Z",
+                        "createdAt": "2024-04-26T00:40:18.620Z",
+                        "image": "http://via.placeholder.com/600x400"
                       }
                     }
                   }
@@ -933,7 +877,7 @@
                     },
                       "message": {
                       "type": "string",
-                      "example": "You are not authorized. Required role Admin or Staff"
+                      "example": "You are not authorized. Required role Admin or Super Admin"
                     }
                   }
                 }
