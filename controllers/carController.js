@@ -45,10 +45,9 @@ const createCar = async (req, res, next) => {
         const {error, value} = validator.validateCreateInput(req.body)
         if(error) return next(new ApiError(error, 400))
         const files = req.files
-        console.log(files)
         
         if(files.length > 0) await uploadImagekit(req.files).then((imageLink) => {value.image = imageLink}) 
-        console.log(value)
+        value.changeById = req.user.id
         const NewCar = await car.create(value)
 
         res.status(201).json({
@@ -73,6 +72,7 @@ const updateCar = async (req, res, next) => {
         if(error) return next(new ApiError(error, 400))
         if(req.user.role !== "Admin" || req.user.role !== "SuperAdmin") return next(new ApiError("You are not authorized. Required role Admin or Super Admin", 403))
         if(files.length > 0) await uploadImagekit(req.files).then((imageLink) => {value.image = imageLink})
+        value.changeById = req.user.id
         const updateCar = await checkCar.update(value)
 
         res.status(201).json({

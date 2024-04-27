@@ -17,6 +17,7 @@ module.exports = {
         transmission: "Automatic",
         typeCars: "Sedan",
         year: 2022,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -32,6 +33,7 @@ module.exports = {
         transmission: "Automatic",
         typeCars: "Convertible",
         year: 2019,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -47,6 +49,7 @@ module.exports = {
         transmission: "Automatic",
         typeCars: "Sedan",
         year: 2022,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -62,6 +65,7 @@ module.exports = {
         transmission: "Manual",
         typeCars: "Hatchback",
         year: 2018,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -77,6 +81,7 @@ module.exports = {
         transmission: "Automatic",
         typeCars: "Sedan",
         year: 2020,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -92,6 +97,7 @@ module.exports = {
         transmission: "Automanual",
         typeCars: "Hatchback",
         year: 2016,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -107,6 +113,7 @@ module.exports = {
         transmission: "Automatic",
         typeCars: "Sedan",
         year: 2020,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -122,6 +129,7 @@ module.exports = {
         transmission: "Automatic",
         typeCars: "Extended Cab Pickup",
         year: 2012,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -137,6 +145,7 @@ module.exports = {
         transmission: "Manual",
         typeCars: "Hatchback",
         year: 2018,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -152,6 +161,7 @@ module.exports = {
         transmission: "Automatic",
         typeCars: "Coupe",
         year: 2022,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -167,6 +177,7 @@ module.exports = {
         transmission: "Automatic",
         typeCars: "Passenger Van",
         year: 2015,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },
@@ -182,6 +193,7 @@ module.exports = {
         transmission: "Automatic",
         typeCars: "Suv",
         year: 2020,
+        changeBy: 3,
         createdAt: new Date(),
         updatedAt: new Date()
       },

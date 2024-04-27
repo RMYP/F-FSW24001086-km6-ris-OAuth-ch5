@@ -34,10 +34,6 @@ module.exports = {
         allowNull: false,
         defaultValue: "Guest",
       },
-      libraryId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       User.hasOne(models.Auth, {
         foreignKey: "userId",
+      }),
+
+      User.hasOne(models.car, {
+        foreignKey: "changeById",
       });
     }
   }
@@ -30,7 +34,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM(["Guest","Admin", "Manager", "Staff"]),
         defaultValue: "Guest",
       },
-      libraryId: DataTypes.INTEGER,
       createdAt: DataTypes.DATE,
       updatedAt: DataTypes.DATE,
     },
